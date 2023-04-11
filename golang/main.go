@@ -1,12 +1,9 @@
 package main
 
 import (
-	"fmt"
-
-	"isuct.ru/informatics2022/internal/module1"
+	"isuct.ru/informatics2022/internal/module2"
 )
 
 func main() {
-	fmt.Println("Hello world")
-	module1.Summ()
+	module2.RadixSort()
 }
