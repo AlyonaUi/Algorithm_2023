@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	module2.RadixSort()
+	module2.Mergesort()
 }

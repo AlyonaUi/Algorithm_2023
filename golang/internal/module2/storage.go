@@ -23,10 +23,10 @@ func Storage() {
 	line = strings.TrimSuffix(line, "\r")
 	str_arr := strings.Split(line, " ")
 
-	arr := make([]int, n)
+	arr1 := make([]int, n)
 
-	for idx, valarr := range str_arr {
-		arr[idx], err = strconv.Atoi(valarr)
+	for idx, val_arr := range str_arr {
+		arr1[idx], err = strconv.Atoi(val_arr)
 		if err != nil {
 			break
 		}
@@ -45,10 +45,10 @@ func Storage() {
 	line = strings.TrimSuffix(line, "\r")
 	str_arr1 := strings.Split(line, " ")
 
-	arr1 := make([]int, k)
+	arr2 := make([]int, k)
 
-	for idx, valarr := range str_arr1 {
-		arr1[idx], err = strconv.Atoi(valarr)
+	for idx, val_arr := range str_arr1 {
+		arr2[idx], err = strconv.Atoi(val_arr)
 		if err != nil {
 			break
 		}
@@ -60,7 +60,7 @@ func Storage() {
 	}
 
 	for j := 0; j < n; j++ {
-		if arr[j] >= counting[j] {
+		if arr1[j] >= counting[j] {
 			fmt.Println(`no`)
 		} else {
 			fmt.Println(`yes`)

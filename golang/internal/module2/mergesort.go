@@ -8,6 +8,11 @@ import (
 	"strings"
 )
 
+type Item struct {
+	Index int
+	Value int
+}
+
 func Mergesort() {
 	var n int
 	_, err := fmt.Scanln(&n)
@@ -23,45 +28,36 @@ func Mergesort() {
 	line = strings.TrimSuffix(line, "\r")
 	str_arr := strings.Split(line, " ")
 
-	arr := make([]int, n)
+	arr := make([]Item, n)
 
 	for idx, val := range str_arr {
-		arr[idx], err = strconv.Atoi(val)
+		value, err := strconv.Atoi(val)
 		if err != nil {
 			break
 		}
+		arr[idx] = Item{Index: idx + 1, Value: value}
 	}
-
-	index := make([]int, 0, n)
-	for ind := 1; ind <= n; ind++ {
-		index = append(index, ind)
-	}
-	fmt.Println(strings.Trim(fmt.Sprint(Merge(arr, index)), "[]"))
+	fmt.Println(strings.Trim(fmt.Sprint(Merge(arr)), "[]"))
 }
 
-func Merge(arr, index []int) []int {
+func Merge(arr []Item) []Item {
 	if len(arr) == 1 {
 		return arr
 	}
-	if len(index) == 1 {
-		return index
-	}
 
 	left := arr[:(len(arr) / 2)]
-	lind := index[:(len(index) / 2)]
 
 	right := arr[(len(arr) / 2):]
-	rind := index[(len(index) / 2):]
 
-	return MSort(Merge(left, lind), Merge(right, rind), lind, rind)
+	return MSort(Merge(left), Merge(right))
 }
 
-func MSort(left, right, lind, rind []int) []int {
+func MSort(left, right []Item) []Item {
 	i, j := 0, 0
-	result := make([]int, len(left)+len(right))
-	//
+	result := make([]Item, len(left)+len(right))
+
 	for k := 0; k < (len(left) + len(right)); k++ {
-		if j == len(right) || (i < len(left) && left[i] <= right[j]) {
+		if j == len(right) || (i < len(left) && left[i].Value <= right[j].Value) {
 			result[k] = left[i]
 			i++
 		} else {
@@ -70,7 +66,7 @@ func MSort(left, right, lind, rind []int) []int {
 		}
 	}
 
-	fmt.Println(lind[0], rind[len(rind)-1], result[0], result[len(result)-1])
+	fmt.Println(result[0].Value, result[len(result)-1].Value, result[0].Index, result[len(result)-1].Index)
 
 	return result
 }
